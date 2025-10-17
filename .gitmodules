@@ -1,3 +1,45 @@
 [submodule "Xbox/roms/seabios"]
 	path = Xbox/roms/seabios
 	url = https://gitlab.com/qemu-project/seabios.git/
+[submodule "Xbox/roms/SLOF"]
+	path = Xbox/roms/SLOF
+	url = https://gitlab.com/qemu-project/SLOF.git
+[submodule "Xbox/roms/ipxe"]
+	path = Xbox/roms/ipxe
+	url = https://gitlab.com/qemu-project/ipxe.git
+[submodule "Xbox/roms/openbios"]
+	path = Xbox/roms/openbios
+	url = https://gitlab.com/qemu-project/openbios.git
+[submodule "Xbox/roms/qemu-palcode"]
+	path = Xbox/roms/qemu-palcode
+	url = https://gitlab.com/qemu-project/qemu-palcode.git
+[submodule "Xbox/roms/u-boot"]
+	path = Xbox/roms/u-boot
+	url = https://gitlab.com/qemu-project/u-boot.git
+[submodule "Xbox/roms/skiboot"]
+	path = Xbox/roms/skiboot
+	url = https://gitlab.com/qemu-project/skiboot.git
+[submodule "Xbox/roms/QemuMacDrivers"]
+	path = Xbox/roms/QemuMacDrivers
+	url = https://gitlab.com/qemu-project/QemuMacDrivers.git
+[submodule "Xbox/roms/seabios-hppa"]
+	path = Xbox/roms/seabios-hppa
+	url = https://gitlab.com/qemu-project/seabios-hppa.git
+[submodule "Xbox/roms/u-boot-sam460ex"]
+	path = Xbox/roms/u-boot-sam460ex
+	url = https://gitlab.com/qemu-project/u-boot-sam460ex.git
+[submodule "Xbox/roms/edk2"]
+	path = Xbox/roms/edk2
+	url = https://gitlab.com/qemu-project/edk2.git
+[submodule "Xbox/roms/opensbi"]
+	path = Xbox/roms/opensbi
+	url = https://gitlab.com/qemu-project/opensbi.git
+[submodule "Xbox/roms/qboot"]
+	path = Xbox/roms/qboot
+	url = https://gitlab.com/qemu-project/qboot.git
+[submodule "Xbox/roms/vbootrom"]
+	path = Xbox/roms/vbootrom
+	url = https://gitlab.com/qemu-project/vbootrom.git
+[submodule "Xbox/tests/lcitool/libvirt-ci"]
+	path = Xbox/tests/lcitool/libvirt-ci
+	url = https://gitlab.com/libvirt/libvirt-ci.git
