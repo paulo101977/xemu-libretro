@@ -1,0 +1,3 @@
+[submodule "Xbox/roms/seabios"]
+	path = Xbox/roms/seabios
+	url = https://gitlab.com/qemu-project/seabios.git/
