@@ -10,31 +10,23 @@ cmake .. -DCMAKE_BUILD_TYPE=Release
 make -j$(getconf _NPROCESSORS_ONLN)
 ```
 
-## Build on windows
-
-```shell
-cmake -S . -B build -T ClangCL -DCMAKE_BUILD_TYPE=Release
-cmake --build build --target xemu-libretro --config Release
-```
-
-## Build for windows with MinGW64 with WSL2
+## Build for windows with MinGW64 with WSL2 (cross-build)
 
 ```shell
 sudo apt update
 sudo apt install -y build-essential python3 python3-pip meson ninja-build pkg-config git libglib2.0-dev libepoxy-dev libsdl2-dev
+sudo apt install -y  pkg-config libpcap-dev
+
+cd Xbox
+
+python3 -m venv pyvenv
+source pyvenv/bin/activate
+pip install --upgrade pip
+pip install pyyaml
+chmod +x configure
+
+./configure --target-list=x86_64-softmmu --enable-debug --disable-werror
+
 ...
 #TODO add complete command for windows here
 ```
-
-<!-- ## Build on windows with MinGW64
-
-```shell
-cd Xbox/
-./configure --enable-debug --disable-werror
-python scripts/qapi-gen.py --output-dir=build/qapi qapi/qapi-schema.json
-
-cd ..
-
-cmake -S . -B build -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release
-cmake --build build --target xemu-libretro --config Release
-``` -->
