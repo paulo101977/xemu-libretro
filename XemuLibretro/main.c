@@ -1,9 +1,11 @@
 
-#include <cstdint>
+#include "xemu-precompiled.h"
+#include "qemu/bitops.h"        // QEMU_ALIGN_DOWN
+#include "qemu/thread.h"        // QemuMutex, QemuRecMutex, qemu_mutex_init
+#include "qemu/bitmap.h"        // bitmap.h depende dos dois acima
+#include <assert.h>
 #include <libretro.h>
-#include <string>
-#include <thread>
-
+#include <hw/xbox/xbox.h>
 
 #ifdef PERF_TEST
 static struct retro_perf_callback perf_cb;
@@ -25,14 +27,14 @@ static struct retro_perf_callback perf_cb;
 #define RETRO_PERFORMANCE_STOP(name)
 #endif
 
-namespace Libretro
-{
+// namespace Libretro
+// {
 extern retro_environment_t environ_cb;
 static bool widescreen;
 static bool g_emuthread_launched = false;
-}  // namespace Libretro
+// }  // namespace Libretro
 
-extern "C" {
+// extern "C" {
 
 // TODO set the environment callback correctly
 void retro_set_environment(retro_environment_t cb)
@@ -49,17 +51,22 @@ void retro_init(void)
 {
   enum retro_pixel_format xrgb888 = RETRO_PIXEL_FORMAT_XRGB8888;
   // Libretro::environ_cb(RETRO_ENVIRONMENT_SET_PIXEL_FORMAT, &xrgb888);
+  // pc_machine_init_xbox();
+  MachineState _m = {};
+  MachineState *machine = &_m;
+
+  xbox_init_common(machine, NULL, NULL);
 }
 
 void retro_deinit(void)
 {
-  Libretro::g_emuthread_launched = false;
+  g_emuthread_launched = false;
 #ifdef PERF_TEST
   perf_cb.perf_log();
 #endif
 }
 
-void retro_get_system_info(retro_system_info* info)
+void retro_get_system_info(struct retro_system_info* info)
 {
   info->need_fullpath = true;
   info->valid_extensions = "iso|xiso|bin|cue|nrg|mdf|img|ccd"; // TODO set valid extensions
@@ -68,7 +75,7 @@ void retro_get_system_info(retro_system_info* info)
   info->block_extract = true;
 }
 
-void retro_get_system_av_info(retro_system_av_info* info)
+void retro_get_system_av_info(struct retro_system_av_info* info)
 {
 
 }
@@ -128,4 +135,4 @@ void retro_cheat_reset(void)
 void retro_cheat_set(unsigned index, bool enabled, const char* code)
 {
 }
-} // extern "C"
+// } // extern "C"

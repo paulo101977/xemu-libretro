@@ -58,6 +58,7 @@ set (min_xcode_version "14.0") # corresponding xcode version for AppleClang_min_
 set (MSVC_min_version 14.32)
 set (min_vs_version "2022 17.2.3") # corresponding Visual Studio version for MSVC_min_version
 set(LIBRETRO_FOLDER XemuLibretro)
+set(XBOX_FOLDER Xbox)
 
 message(STATUS "Using ${COMPILER} ${CMAKE_CXX_COMPILER_VERSION}")
 
@@ -174,7 +175,8 @@ list(APPEND CMAKE_MODULE_PATH
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 add_library(xemu-libretro SHARED
-  ${LIBRETRO_FOLDER}/Main.cpp
+  ${LIBRETRO_FOLDER}/main.c
+  ${XBOX_FOLDER}/hw/xbox/xbox.c
 )
 
 if(ENABLE_VULKAN)
@@ -190,10 +192,30 @@ if(ENABLE_VULKAN)
 	include_directories(${CMAKE_SOURCE_DIR}/Externals/VulkanMemoryAllocator/include)
 endif()
 
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(GLIB2 REQUIRED glib-2.0)
+
 target_include_directories(
   xemu-libretro 
-  PRIVATE ${CMAKE_SOURCE_DIR}/Externals/Libretro/Include
+  PRIVATE
+  ${GLIB2_INCLUDE_DIRS}
+  ${XBOX_FOLDER}/build
+  ${XBOX_FOLDER}/build/qapi
+  ${CMAKE_SOURCE_DIR}/Externals/Libretro/Include
   ${LIBRETRO_FOLDER}/Include
+  ${XBOX_FOLDER}
+  ${XBOX_FOLDER}/roms
+  ${XBOX_FOLDER}/include
+  ${XBOX_FOLDER}/include/qemu
+  ${XBOX_FOLDER}/hw
+  ${XBOX_FOLDER}/include/hw
+  ${XBOX_FOLDER}/hw/xbox
+  ${XBOX_FOLDER}/target/i386
+)
+
+target_precompile_headers(
+  xemu-libretro PRIVATE 
+  ${LIBRETRO_FOLDER}/xemu-precompiled.h
 )
 
 set(LIBRARY_OUTPUT_PATH "${CMAKE_BINARY_DIR}")
@@ -224,12 +246,16 @@ endif()
 
 set(LIBRETRO_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/Externals/Libretro/Include)
 
-
 if(MINGW)
   target_link_libraries(xemu-libretro PRIVATE
     common
     setupapi
+    ${GLIB2_LIBRARIES}
+    ${CMAKE_SOURCE_DIR}/${XBOX_FOLDER}/build
+    ${CMAKE_SOURCE_DIR}/${XBOX_FOLDER}/build/qapi
   )
+
+  add_definitions(${GLIB_CFLAGS_OTHER})
 endif()
 
 if(MINGW OR LIBRETRO_STATIC)

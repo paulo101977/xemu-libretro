@@ -6,20 +6,35 @@ A fork of Xemu with the goal of creating a libretro core for Reinforcement Learn
 
 ```shell
 mkdir build && cd build
-cmake .. -DLIBRETRO=ON -DCMAKE_BUILD_TYPE=Release
+cmake .. -DCMAKE_BUILD_TYPE=Release
 make -j$(getconf _NPROCESSORS_ONLN)
 ```
 
 ## Build on windows
 
 ```shell
-cmake -B build -DLIBRETRO=ON -DCMAKE_BUILD_TYPE=Release -G"Visual Studio 17 2022" -A x64
+cmake -S . -B build -T ClangCL -DCMAKE_BUILD_TYPE=Release
 cmake --build build --target xemu-libretro --config Release
 ```
 
-## Build on windows using ming
+## Build for windows with MinGW64 with WSL2
 
 ```shell
-cmake -B build -DLIBRETRO=ON -DCMAKE_BUILD_TYPE=Release -G Ninja
-ninja
+sudo apt update
+sudo apt install -y build-essential python3 python3-pip meson ninja-build pkg-config git libglib2.0-dev libepoxy-dev libsdl2-dev
+...
+#TODO add complete command for windows here
 ```
+
+<!-- ## Build on windows with MinGW64
+
+```shell
+cd Xbox/
+./configure --enable-debug --disable-werror
+python scripts/qapi-gen.py --output-dir=build/qapi qapi/qapi-schema.json
+
+cd ..
+
+cmake -S . -B build -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release
+cmake --build build --target xemu-libretro --config Release
+``` -->
