@@ -177,6 +177,8 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 add_library(xemu-libretro SHARED
   ${LIBRETRO_FOLDER}/main.c
   ${XBOX_FOLDER}/hw/xbox/xbox.c
+  ${XBOX_FOLDER}/qom/object.c
+  ${XBOX_FOLDER}/hw/i386/x86.c
 )
 
 if(ENABLE_VULKAN)
@@ -212,6 +214,15 @@ target_include_directories(
   ${XBOX_FOLDER}/hw/xbox
   ${XBOX_FOLDER}/target/i386
 )
+
+
+# set(GENERATED_INCLUDE_DIR "${XBOX_FOLDER}/include")
+
+# file(MAKE_DIRECTORY "${GENERATED_INCLUDE_DIR}")
+# file(WRITE "${GENERATED_INCLUDE_DIR}/config-poison.h" "#pragma once\n")
+
+
+# include_directories(${GENERATED_INCLUDE_DIR})
 
 target_precompile_headers(
   xemu-libretro PRIVATE 
