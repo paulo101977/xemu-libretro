@@ -527,7 +527,7 @@ static const TypeInfo pc_machine_type_xbox = {
     },
 };
 
-static void pc_machine_init_xbox(void)
+void pc_machine_init_xbox(void)
 {
     type_register(&pc_machine_type_xbox);
 }

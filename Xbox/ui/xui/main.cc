@@ -305,7 +305,10 @@ void xemu_hud_render(void)
 
     first_boot_window.Draw();
     monitor_window.Draw();
+    // Audio?
+#ifndef XEMU_MODULE
     apu_window.Draw();
+#endif
     video_window.Draw();
     compatibility_reporter_window.Draw();
 #if defined(_WIN32)

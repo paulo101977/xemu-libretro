@@ -1399,6 +1399,32 @@ void pgraph_gl_init_surfaces(PGRAPHState *pg)
 {
     PGRAPHGLState *r = pg->gl_renderer_state;
 
+    printf("=== PGRAPH_GL_INIT_SURFACES ===\n");
+    printf("Thread ID: %lu\n", (unsigned long)GetCurrentThreadId());
+    
+    if(!glGenFramebuffers) {
+        printf("glGenFramebuffers is NULL!\n");
+        return;
+    }
+
+    if(!r) {
+        printf("gl_renderer_state is NULL!\n");
+        return;
+    }
+
+    const char* vendor = (const char*)glGetString(GL_VENDOR);
+    const char* renderer = (const char*)glGetString(GL_RENDERER);
+    
+    printf("glGetString results:\n");
+    printf("  Vendor: %p -> '%s'\n", (void*)vendor, vendor ? vendor : "NULL");
+    printf("  Renderer: %p -> '%s'\n", (void*)renderer, renderer ? renderer : "NULL");
+    
+    if (!vendor || !renderer) {
+        printf("No GL context active in this thread!\n");
+        printf("File: %s, Line: %d\n", __FILE__, __LINE__);
+        return;
+    }
+
     pgraph_gl_reload_surface_scale_factor(pg);
     glGenFramebuffers(1, &r->gl_framebuffer);
     glBindFramebuffer(GL_FRAMEBUFFER, r->gl_framebuffer);

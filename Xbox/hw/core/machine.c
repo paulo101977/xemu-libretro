@@ -1707,4 +1707,8 @@ static void machine_register_types(void)
     type_register_static(&machine_info);
 }
 
+void machine_init(void) {
+    machine_register_types();
+}
+
 type_init(machine_register_types)

@@ -199,6 +199,8 @@ void pc_nic_init(PCMachineClass *pcmc, ISABus *isa_bus, PCIBus *pci_bus);
 
 void pc_i8259_create(ISABus *isa_bus, qemu_irq *i8259_irqs);
 
+void pc_machine_init(void);
+
 /* port92.c */
 #define PORT92_A20_LINE "a20"
 

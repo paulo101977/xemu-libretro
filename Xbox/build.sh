@@ -264,11 +264,12 @@ set -x # Print commands from now on
 
 "${configure}" \
     --extra-cflags="-DXBOX=1 ${build_cflags} ${sys_cflags} ${CFLAGS}" \
-    --extra-ldflags="${sys_ldflags}" \
+    --extra-ldflags="${sys_ldflags} -liconv" \
     --target-list=i386-softmmu \
     ${opts} \
     "$@"
 
-time make -j"${job_count}" ${target} 2>&1 | tee build.log
+# time make -j"${job_count}" ${target} 2>&1 | tee build.log
+ninja xemu_module.pyd
 
 "${postbuild}" # call post build functions

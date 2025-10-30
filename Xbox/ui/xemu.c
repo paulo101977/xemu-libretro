@@ -92,6 +92,10 @@ static bool xb_console_gl_check_format(DisplayChangeListener *dcl,
     }
 }
 
+#ifdef XEMU_MODULE
+static GLuint g_tex;
+#endif
+
 void xb_surface_gl_create_texture(DisplaySurface *surface);
 void xb_surface_gl_update_texture(DisplaySurface *surface, int x, int y, int w, int h);
 void xb_surface_gl_destroy_texture(DisplaySurface *surface);
@@ -759,7 +763,11 @@ static void sdl2_display_very_early_init(DisplayOptions *o)
         window_height = min_window_height;
     }
 
+#ifdef XEMU_MODULE
+    SDL_WindowFlags window_flags = (SDL_WindowFlags)(SDL_WINDOW_OPENGL | SDL_WINDOW_HIDDEN);
+#else
     SDL_WindowFlags window_flags = (SDL_WindowFlags)(SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
+#endif
 
     // Create main window
     m_window = SDL_CreateWindow(
@@ -1039,6 +1047,12 @@ void sdl2_gl_refresh(DisplayChangeListener *dcl)
      * to the framebuffer, fall back to the VGA path.
      */
     GLuint tex = nv2a_get_framebuffer_surface();
+
+#ifdef XEMU_MODULE
+    g_tex = tex;
+#endif
+
+
     if (tex == 0) {
         // FIXME: Don't upload if notdirty
         xb_surface_gl_create_texture(scon->surface);
@@ -1054,7 +1068,10 @@ void sdl2_gl_refresh(DisplayChangeListener *dcl)
      */
     qemu_mutex_lock_main_loop();
     bql_lock();
+
+#ifndef XEMU_MODULE
     sdl2_poll_events(scon);
+#endif
 
     glClearColor(0, 0, 0, 0);
     glClear(GL_COLOR_BUFFER_BIT);
@@ -1097,6 +1114,7 @@ void sdl2_gl_refresh(DisplayChangeListener *dcl)
     const int64_t sleep_threshold = 250000;
 #endif
 
+#ifndef XEMU_MODULE
     while (1) {
         int64_t now = qemu_clock_get_ns(QEMU_CLOCK_REALTIME);
         int64_t time_remaining = deadline - now;
@@ -1121,7 +1139,7 @@ void sdl2_gl_refresh(DisplayChangeListener *dcl)
             break;
         }
     }
-
+#endif
 }
 
 void sdl2_gl_redraw(struct sdl2_console *scon)
@@ -1309,14 +1327,32 @@ static void setup_nvidia_profile(void)
         nvapi_finalize();
     }
 }
+
+void setup_nvidia() {
+    setup_nvidia_profile();
+}
+
 #endif
 
+#ifdef XEMU_MODULE
+void xemu_deinit() {
+    qemu_system_shutdown_request(SHUTDOWN_CAUSE_HOST_UI);
+}
+#endif
+
+#ifndef XEMU_MODULE
 int main(int argc, char **argv)
+#else
+int start_xemu(int argc, char **argv)
+#endif
 {
     QemuThread thread;
 
     setlocale(LC_NUMERIC, "C");
 
+    printf("__LINE__=%d, __FILE__:%s\n", __LINE__, __FILE__);
+
+#ifndef XEMU_MODULE
 #ifdef _WIN32
     if (AttachConsole(ATTACH_PARENT_PROCESS)) {
         // Launched with a console. If stdout and stderr are not associated with
@@ -1338,6 +1374,8 @@ int main(int argc, char **argv)
         }
     }
 #endif
+#endif
+    printf("__LINE__=%d, __FILE__:%s\n", __LINE__, __FILE__);
 
     fprintf(stderr, "xemu_version: %s\n", xemu_version);
     fprintf(stderr, "xemu_branch: %s\n", xemu_branch);
@@ -1347,6 +1385,8 @@ int main(int argc, char **argv)
     DPRINTF("Entered main()\n");
     gArgc = argc;
     gArgv = argv;
+
+    printf("__LINE__=%d, __FILE__:%s\n", __LINE__, __FILE__);
 
     for (int i = 1; i < argc; i++) {
         if (argv[i] && strcmp(argv[i], "-config_path") == 0) {
@@ -1359,6 +1399,8 @@ int main(int argc, char **argv)
         }
     }
 
+    printf("__LINE__=%d, __FILE__:%s\n", __LINE__, __FILE__);
+
     if (!xemu_settings_load()) {
         const char *err_msg = xemu_settings_get_error_message();
         fprintf(stderr, "%s", err_msg);
@@ -1370,26 +1412,37 @@ int main(int argc, char **argv)
     }
     atexit(xemu_settings_save);
 
+    printf("__LINE__=%d, __FILE__:%s\n", __LINE__, __FILE__);
+
 #ifdef _WIN32
     if (g_config.display.setup_nvidia_profile) {
         setup_nvidia_profile();
     }
 #endif
 
+    printf("__LINE__=%d, __FILE__:%s\n", __LINE__, __FILE__);
+
     sdl2_display_very_early_init(NULL);
+
 
     qemu_sem_init(&display_init_sem, 0);
     qemu_thread_create(&thread, "qemu_main", call_qemu_main,
                        NULL, QEMU_THREAD_DETACHED);
 
+    printf("__LINE__=%d, __FILE__:%s\n", __LINE__, __FILE__);
+
     DPRINTF("Main thread: waiting for display_init_sem\n");
     qemu_sem_wait(&display_init_sem);
+
+    printf("__LINE__=%d, __FILE__:%s\n", __LINE__, __FILE__);
 
     gui_grab = 0;
     if (gui_fullscreen) {
         sdl_grab_start(0);
         set_full_screen(&sdl2_console[0], gui_fullscreen);
     }
+
+    printf("__LINE__=%d, __FILE__:%s\n", __LINE__, __FILE__);
 
     /*
      * FIXME: May want to create a callback mechanism for main QEMU thread
@@ -1407,13 +1460,34 @@ int main(int argc, char **argv)
     bql_unlock();
     qemu_mutex_unlock_main_loop();
 
+    printf("__LINE__=%d, __FILE__:%s\n", __LINE__, __FILE__);
+
+#ifndef XEMU_MODULE
     while (1) {
         sdl2_gl_refresh(&sdl2_console[0].dcl);
         assert(glGetError() == GL_NO_ERROR);
     }
+#endif
+
+    printf("__LINE__=%d, __FILE__:%s\n", __LINE__, __FILE__);
 
     // rcu_unregister_thread();
 }
+
+GLuint get_texture() {
+    return g_tex;
+}
+
+#ifdef XEMU_MODULE
+void run_step() {
+    // set audio volume to zero 
+    // g_config.audio.volume_limit = 0;
+
+    // run one step
+    sdl2_gl_refresh(&sdl2_console[0].dcl);
+    assert(glGetError() == GL_NO_ERROR);
+}
+#endif
 
 void xemu_eject_disc(Error **errp)
 {

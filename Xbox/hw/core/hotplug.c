@@ -68,4 +68,9 @@ static void hotplug_handler_register_types(void)
     type_register_static(&hotplug_handler_info);
 }
 
+void hotplug_handler_register_extern(void)
+{
+    hotplug_handler_register_types();
+}
+
 type_init(hotplug_handler_register_types)

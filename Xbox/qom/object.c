@@ -2890,4 +2890,8 @@ static void register_types(void)
     type_register_internal(&object_info);
 }
 
+void init_object_fn(void) {
+    register_types();
+}
+
 type_init(register_types)

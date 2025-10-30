@@ -2050,6 +2050,8 @@ Object *container_get(Object *root, const char *path);
 char *object_property_help(const char *name, const char *type,
                            QObject *defval, const char *description);
 
+void init_object_fn(void);                           
+
 G_DEFINE_AUTOPTR_CLEANUP_FUNC(Object, object_unref)
 
 #ifdef __cplusplus

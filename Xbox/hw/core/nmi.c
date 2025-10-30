@@ -84,4 +84,8 @@ static void nmi_register_types(void)
     type_register_static(&nmi_info);
 }
 
+void mi_register_types_extern(void) {
+    nmi_register_types();
+}
+
 type_init(nmi_register_types)

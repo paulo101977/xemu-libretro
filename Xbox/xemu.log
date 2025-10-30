@@ -1,0 +1,1664 @@
+__LINE__=1353, __FILE__:../ui/xemu.c
+__LINE__=1364, __FILE__:../ui/xemu.c
+__LINE__=1377, __FILE__:../ui/xemu.c
+__LINE__=1390, __FILE__:../ui/xemu.c
+__LINE__=1398, __FILE__:../ui/xemu.c
+__LINE__=1407, __FILE__:../ui/xemu.c
+Created QEMU launch parameters: xemu -machine xbox,bootrom=D:\Downloads\xemu-win-x86_64-release\mcpx\mcpx_1.0.bin,kernel-irqchip=off,avpack=vga -device smbus-storage,file=C:\Users\paulo\AppData\Roaming\xemu\xemu\eeprom.bin -bios D:\Downloads\xemu-win-x86_64-release\bios\Complex_4627.bin -m 64 -drive index=0,media=disk,file=D:\Downloads\xemu-win-x86_64-release\hdd\xbox_hdd.qcow2,locked=on -drive index=1,media=cdrom,file=D:\Downloads\xemu-win-x86_64-release\cs.iso -display xemu -device usb-hub,port=1,ports=4 -D sync,rcu -accel tcg,thread=single -smp 1 -no-shutdown -display xemu 
+xemu_version: 0.0.0
+xemu_branch: 
+xemu_commit: 
+xemu_date: Mon Oct 20 21:31:56 UTC 2025
+xemu_settings_get_base_path: base path: C:\Users\paulo\AppData\Roaming\xemu\xemu\
+xemu_settings_get_path: config path: C:\Users\paulo\AppData\Roaming\xemu\xemu\xemu.toml
+nvapi: Saved settings
+CPU: AMD Ryzen 9 5900X 12-Core Processor            
+OS_Version: Windows 10 Pro 23H2
+GL_VENDOR: NVIDIA Corporation
+GL_RENDERER: NVIDIA GeForce RTX 4070 Ti/PCIe/SSE2
+GL_VERSION: 4.0.0 NVIDIA 576.02
+GL_SHADING_LANGUAGE_VERSION: 4.00 NVIDIA via Cg compiler
+Enabled instance extensions:
+- VK_KHR_surface
+- VK_KHR_win32_surface
+- VK_KHR_get_physical_device_properties2
+- VK_KHR_external_semaphore_capabilities
+- VK_KHR_external_memory_capabilities
+Available physical devices:
+- NVIDIA GeForce RTX 4070 Ti
+Selected physical device: NVIDIA GeForce RTX 4070 Ti
+- Vendor: 10de, Device: 2782
+- Driver Version: 576.8.0
+Enabled device extensions:
+- VK_KHR_external_semaphore
+- VK_KHR_external_memory
+- VK_KHR_external_memory_win32
+- VK_KHR_external_semaphore_win32
+- VK_EXT_custom_border_color
+- VK_EXT_provoking_vertex
+- VK_EXT_memory_budget
+__LINE__=1412, __FILE__:../ui/xemu.c
+__LINE__=1420, __FILE__:../ui/xemu.c
+__LINE__=1438, __FILE__:../ui/xemu.c
+__LINE__=1447, __FILE__:../ui/xemu.c
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+xemu: Unknown savevm section or instance 'pci.0:02.0/1.3/usb-hub' 0. Make sure that your current VM setup matches your saved VM setup, including any hotplugged devices
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+sdl error: 0
+__LINE__=1453, __FILE__:../ui/xemu.c
+dsound: warning: Voice is not playing

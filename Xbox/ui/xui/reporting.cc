@@ -64,6 +64,7 @@ const std::string &CompatibilityReport::GetSerializedReport()
 
 bool CompatibilityReport::Send()
 {
+#ifdef CONFIG_CURL
 	const std::string &s = GetSerializedReport();
 
 	int res = http_post_json(compat_report_endpoint_url, s.c_str(), NULL);
@@ -94,6 +95,9 @@ bool CompatibilityReport::Send()
 		result_msg = "Unknown error occurred";
 		return false;
 	}
+#else
+	return false;
+#endif
 }
 
 void CompatibilityReport::SetXbeData(struct xbe *xbe)

@@ -818,7 +818,17 @@ GLuint pgraph_gl_compile_shader(const char *vs_src, const char *fs_src)
     glShaderSource(vs, 1, &vs_src, NULL);
     glCompileShader(vs);
     glGetShaderiv(vs, GL_COMPILE_STATUS, &status);
+
+    const char* vendor = (const char*)glGetString(GL_VENDOR);
+    const char* renderer = (const char*)glGetString(GL_RENDERER);
+    
+    if (!vendor || !renderer) {
+        printf("No GL context active - glGetString failed\n");
+        printf("__LINE__: %d, __FILE__ %s\n", __LINE__, __FILE__);
+    }
+
     if (status != GL_TRUE) {
+        printf("Vertex shader glGetShaderInfoLog:%p\n", glGetShaderInfoLog);
         glGetShaderInfoLog(vs, sizeof(err_buf), NULL, err_buf);
         err_buf[sizeof(err_buf)-1] = '\0';
         fprintf(stderr, "Vertex shader compilation failed: %s\n", err_buf);

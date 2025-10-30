@@ -69,7 +69,9 @@ have_user = have_linux_user or have_bsd_user
 ############
 
 sh = find_program('sh')
+# python 3.12, 3.11, etc
 python = import('python').find_installation()
+
 cmake = import('cmake')
 cmake_macos_arch = host_machine.cpu() == 'aarch64' ? 'arm64' : host_machine.cpu()
 
@@ -156,11 +158,9 @@ endforeach
 # xemu Version
 ###########################################
 
-xemu_version_cmd = [find_program('scripts/xemu-version.sh'),
-                    meson.current_source_dir()]
-xemu_version = custom_target('xemu-version-macro.h',
+ xemu_version = custom_target('xemu-version-macro.h',
                              output: 'xemu-version-macro.h',
-                             command: xemu_version_cmd,
+                             command: ['bash', '-c', 'cd "@0@" && ./scripts/xemu-version.sh .'.format(meson.current_build_dir())],
                              capture: true,
                              build_by_default: true,
                              build_always_stale: true)
@@ -694,6 +694,7 @@ endif
 
 qemu_common_flags += cc.get_supported_arguments(hardening_flags)
 
+add_global_arguments('-DXEMU_MODULE', language: all_languages)
 add_global_arguments(qemu_common_flags, native: false, language: all_languages)
 add_global_link_arguments(qemu_ldflags, native: false, language: all_languages)
 
@@ -759,6 +760,7 @@ add_project_arguments(cc.get_supported_arguments(warn_flags), native: false, lan
 if 'cpp' in all_languages
   add_project_arguments(qemu_cxxflags, native: false, language: 'cpp')
   add_project_arguments(cxx.get_supported_arguments(warn_flags), native: false, language: 'cpp')
+  add_project_arguments('-fpermissive', language: 'cpp')
 endif
 if 'objc' in all_languages
   # Note sanitizer flags are not applied to Objective-C sources!
@@ -1383,9 +1385,17 @@ if not get_option('blkio').auto() or have_block
                      method: 'pkg-config',
                      required: get_option('blkio'))
 endif
+
+curl_static = false
+if host_os ==  'windows'
+  curl_static = true
+endif
 curl = dependency('libcurl', version: '>=7.29.0',
                   method: 'pkg-config',
-                  required: false)
+                  required: false,
+                  static: curl_static)
+libssl = dependency('libssl', required: true)
+libcrypto_dep = dependency('libcrypto', required: true)
 if not curl.found()
   if host_os == 'windows'
     curl_platform_opts = ['schannel=enabled', 'sspi=enabled']
@@ -1413,6 +1423,8 @@ if not curl.found()
       'smtp=disabled',
       'telnet=disabled',
       'tftp=disabled',
+      'websockets=disabled',
+      'alt-svc=disabled',
       'default_library=static',
     ] + curl_platform_opts)
   curl = curl_sub.get_variable('curl_dep')
@@ -2593,7 +2605,12 @@ if blkio.found()
   config_host_data.set('CONFIG_BLKIO_WRITE_ZEROS_FUA',
                        blkio.version().version_compare('>=1.4.0'))
 endif
-config_host_data.set('CONFIG_CURL', curl.found())
+
+if host_os == 'windows'
+  config_host_data.set('CONFIG_CURL', false)
+else
+  config_host_data.set('CONFIG_CURL', curl.found())
+endif
 config_host_data.set('CONFIG_CURSES', curses.found())
 config_host_data.set('CONFIG_GBM', gbm.found())
 config_host_data.set('CONFIG_GIO', gio.found())
@@ -2767,7 +2784,9 @@ config_host_data.set('CONFIG_SCHED_GETCPU', cc.has_function('sched_getcpu', pref
 # Note that we need to specify prefix: here to avoid incorrectly
 # thinking that Windows has posix_memalign()
 config_host_data.set('CONFIG_POSIX_MEMALIGN', cc.has_function('posix_memalign', prefix: '#include <stdlib.h>'))
-config_host_data.set('CONFIG_ALIGNED_MALLOC', cc.has_function('_aligned_malloc'))
+if host_machine.system() == 'windows'
+  config_host_data.set('CONFIG_ALIGNED_MALLOC', true)
+endif
 config_host_data.set('CONFIG_VALLOC', cc.has_function('valloc'))
 config_host_data.set('CONFIG_MEMALIGN', cc.has_function('memalign'))
 config_host_data.set('CONFIG_PPOLL', cc.has_function('ppoll'))
@@ -4291,6 +4310,12 @@ if host_os == 'darwin'
   entitlement = find_program('scripts/entitlement.sh')
 endif
 
+pybind11 = dependency('pybind11', required: true)
+python_prefix = run_command(python, '-c', 'import sys; print(sys.prefix)', check: true).stdout().strip()
+python_include = run_command(python, '-c', 'import sysconfig; print(sysconfig.get_path("include"))', check: true).stdout().strip()
+python_libs = run_command(python, '-c', 'import sys; print(sys.prefix)', check: true).stdout().strip() + '/libs'
+python_version = run_command(python, '-c', 'import sys; print(f"python{sys.version_info.major}.{sys.version_info.minor}")', check: true).stdout().strip()
+
 traceable = []
 emulators = {}
 foreach target : target_dirs
@@ -4448,6 +4473,11 @@ foreach target : target_dirs
       'dependencies': []
     }]
   endif
+
+  foreach exe: execs
+    message('Executable name:', exe['name'])
+  endforeach
+
   foreach exe: execs
     exe_name = exe['name']
     if host_os == 'darwin'
@@ -4462,6 +4492,89 @@ foreach target : target_dirs
                link_depends: [block_syms, qemu_syms],
                link_args: link_args,
                win_subsystem: exe['win_subsystem'])
+
+    if exe_name.contains('i386')
+      lib_suffix = ''
+      if exe_name == 'qemu-system-i386w'
+          lib_suffix = '_win'
+      endif
+
+      xemu_includes = [
+        include_directories('.'),
+        include_directories('include'), 
+        # include_directories('python'),
+      ]
+
+
+      python_dep = declare_dependency(
+          compile_args: ['-I' + python_include],
+          link_args: [
+            '-l' + python_version,
+            '-static',
+            '-static-libgcc',
+            '-static-libstdc++',
+            '-Wl,-Bstatic',
+            '-lwinpthread',
+            '-Wl,-Bdynamic',
+          ]
+      )
+
+      glew_dep = dependency('glew', required: true)
+
+      xemu_python_deps = [
+        arch_deps,
+        exe['dependencies'],
+        pybind11,
+        # python,
+        python_dep,
+        sdl,
+        glew_dep,
+      ]
+      
+      xemu_sources = [ 
+        'main.cpp',
+        'xemu-wrapper.c',
+      ]
+      xemu_lib = shared_module('xemu_module' + lib_suffix,
+              sources: xemu_sources + exe['sources'],
+              dependencies: xemu_python_deps,
+              objects: lib.extract_all_objects(recursive: true),
+              name_prefix: '',
+              name_suffix: 'pyd',
+              link_depends: [block_syms, qemu_syms],
+              include_directories: xemu_includes,
+              cpp_args: [
+                '-fvisibility=hidden',
+                '-Wno-deprecated-declarations',
+                '-DXEMU_MODULE=1',
+                '-I.', '-Iinclude', '-Ihw'
+              ],
+              c_args: c_args + [
+                '-DXEMU_MODULE=1',
+                '-I.', '-Iinclude', '-Ihw'
+              ],
+              link_args: link_args + [
+                  # '-Wl,--export-all-symbols',
+                  # '-Wl,--enable-auto-import',
+                  # '-Wl,--add-stdcall-alias',
+                  # '-shared',
+                  # '-static-libgcc',
+                  # '-static-libstdc++'
+                  '-Wl,--export-all-symbols',
+                  '-Wl,--enable-auto-import',
+                  '-Wl,--add-stdcall-alias',
+                  '-shared',
+                  '-static',
+                  '-static-libgcc',
+                  '-static-libstdc++',
+                  '-Wl,--whole-archive',
+                  '-Wl,--no-whole-archive',
+              ],
+              install: false,
+              # install: true,
+              # install_dir: '../../build',
+              build_by_default: true)
+    endif
 
     if host_os == 'darwin'
       icon = 'pc-bios/qemu.rsrc'
@@ -4955,6 +5068,8 @@ summary_info += {'PAM':               pam}
 summary_info += {'iconv support':     iconv}
 summary_info += {'blkio support':     blkio}
 summary_info += {'curl support':      curl}
+summary_info += {'libssl support':      libssl}
+summary_info += {'libcrypto support':      libcrypto_dep}
 summary_info += {'Multipath support': mpathpersist}
 summary_info += {'Linux AIO support': libaio}
 summary_info += {'Linux io_uring support': linux_io_uring}

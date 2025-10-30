@@ -151,6 +151,7 @@ void *Updater::checker_thread_worker_func(void *updater)
 
 void Updater::check_for_update_internal()
 {
+#ifdef CONFIG_CURL
     g_autoptr(GByteArray) data = g_byte_array_new();
     int res = http_get(version_url, data, NULL, NULL);
 
@@ -176,6 +177,7 @@ finished:
     if (m_on_complete) {
         m_on_complete();
     }
+#endif
 }
 
 void Updater::update()
@@ -207,6 +209,7 @@ int Updater::progress_cb(http_progress_cb_info *info)
 
 void Updater::update_internal()
 {
+#ifdef CONFIG_CURL
     g_autoptr(GByteArray) data = g_byte_array_new();
 
     http_progress_cb_info progress_info;
@@ -273,6 +276,7 @@ errored:
     m_status = UPDATER_ERROR;
 cleanup_zip:
     mz_zip_reader_end(&zip);
+#endif
 }
 
 extern "C" {

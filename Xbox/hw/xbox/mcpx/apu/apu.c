@@ -23,6 +23,8 @@
 
 MCPXAPUState *g_state; // Used via debug handlers
 
+static int16_t capture_buf[256][2];
+
 static void update_irq(MCPXAPUState *d)
 {
     if (d->regs[NV_PAPU_FECTL] & NV_PAPU_FECTL_FEMETHMODE_TRAPPED) {
@@ -103,6 +105,12 @@ static const MemoryRegionOps mcpx_apu_mmio_ops = {
     .write = mcpx_apu_write,
 };
 
+#ifdef XEMU_MODULE
+int16_t (*capture_audio_buffer(void))[2]{
+    return capture_buf;
+}
+#endif
+
 static void se_frame(MCPXAPUState *d)
 {
     mcpx_apu_update_dsp_preference(d);
@@ -162,6 +170,16 @@ static void se_frame(MCPXAPUState *d)
             }
         }
 
+#ifdef XEMU_MODULE
+        memcpy(capture_buf, d->monitor.frame_buf, sizeof(capture_buf));
+        int16_t silent_buf[256][2] = {0};
+        qemu_spin_lock(&d->monitor.fifo_lock);
+        assert(num_bytes_free >= sizeof(silent_buf));
+        fifo8_push_all(&d->monitor.fifo, (uint8_t *)silent_buf, sizeof(silent_buf));
+        qemu_spin_unlock(&d->monitor.fifo_lock);
+
+        memset(d->monitor.frame_buf, 0, sizeof(d->monitor.frame_buf));
+#else
         qemu_spin_lock(&d->monitor.fifo_lock);
         num_bytes_free = fifo8_num_free(&d->monitor.fifo);
         assert(num_bytes_free >= sizeof(d->monitor.frame_buf));
@@ -169,6 +187,7 @@ static void se_frame(MCPXAPUState *d)
                        sizeof(d->monitor.frame_buf));
         qemu_spin_unlock(&d->monitor.fifo_lock);
         memset(d->monitor.frame_buf, 0, sizeof(d->monitor.frame_buf));
+#endif
     }
 
     d->ep_frame_div++;

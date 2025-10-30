@@ -20,6 +20,7 @@
  */
 
 #include "nv2a_int.h"
+#include <SDL.h>
 
 typedef struct RAMHTEntry {
     uint32_t handle;
@@ -452,7 +453,6 @@ static void pfifo_run_pusher(NV2AState *d)
 void *pfifo_thread(void *arg)
 {
     NV2AState *d = (NV2AState *)arg;
-
     pgraph_init_thread(d);
 
     rcu_register_thread();

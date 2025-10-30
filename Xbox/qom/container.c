@@ -24,6 +24,10 @@ static void container_register_types(void)
     type_register_static(&container_info);
 }
 
+void container_register_extern(void) {
+    container_register_types();
+}
+
 Object *container_get(Object *root, const char *path)
 {
     Object *obj, *child;

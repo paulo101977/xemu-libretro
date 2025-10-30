@@ -30,12 +30,14 @@
 #include <implot.h>
 #include <misc/cpp/imgui_stdlib.h>
 #include <stb_image.h>
+#include "qemu/osdep.h"
 
+#ifdef __cplusplus
 extern "C" {
+#endif
 #include <noc_file_dialog.h>
 
 // Include necessary QEMU headers
-#include "qemu/osdep.h"
 #include "qapi/error.h"
 #include "sysemu/sysemu.h"
 #include "sysemu/runstate.h"
@@ -49,7 +51,10 @@ extern "C" {
 #undef atomic_fetch_xor
 #undef atomic_fetch_or
 #undef atomic_fetch_sub
+
+#ifdef __cplusplus
 }
+#endif
 
 extern bool g_screenshot_pending;
 extern float g_main_menu_height;

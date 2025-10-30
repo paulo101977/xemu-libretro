@@ -36,6 +36,7 @@
 #include "qemu/cutils.h"
 #include "trace.h"
 
+#ifdef CONFIG_CURL
 // #define DEBUG_VERBOSE
 
 /* CURL 7.85.0 switches to a string based API for specifying
@@ -1105,3 +1106,5 @@ static void curl_block_init(void)
 }
 
 block_init(curl_block_init);
+
+#endif

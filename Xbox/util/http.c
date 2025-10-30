@@ -24,6 +24,8 @@
 #include <curl/curl.h>
 #include <fcntl.h>
 
+#ifdef CONFIG_CURL
+
 // Ignore SSL certificate verification (for self-signed certs)
 #define ALLOW_INSECURE_HOSTS 0
 
@@ -155,3 +157,5 @@ int http_post_json(const char *url, const char *json_data, Error **errp)
 
     return http_response_code;
 }
+
+#endif

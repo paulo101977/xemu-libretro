@@ -43,3 +43,6 @@
 [submodule "Xbox/tests/lcitool/libvirt-ci"]
 	path = Xbox/tests/lcitool/libvirt-ci
 	url = https://gitlab.com/libvirt/libvirt-ci.git
+[submodule "Xbox/roms/pybind11"]
+	path = Xbox/roms/pybind11
+	url = https://github.com/pybind/pybind11

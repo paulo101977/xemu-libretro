@@ -461,4 +461,8 @@ static void x86_machine_register_types(void)
     type_register_static(&x86_machine_info);
 }
 
+void x86_machine_init(void) {
+    x86_machine_register_types();
+}
+
 type_init(x86_machine_register_types)

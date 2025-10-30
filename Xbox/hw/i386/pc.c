@@ -1868,4 +1868,8 @@ static void pc_machine_register_types(void)
     type_register_static(&pc_machine_info);
 }
 
+void pc_machine_init(void) {
+    pc_machine_register_types();
+}
+
 type_init(pc_machine_register_types)
