@@ -51,6 +51,8 @@ static bool xemu_settings_detect_portable_mode(void)
 {
     bool val = false;
     char *portable_path = g_strdup_printf("%s%s", SDL_GetBasePath(), filename);
+    std::cout << "Checking for portable config at: " << portable_path << std::endl;
+    
     FILE *tmpfile;
     if ((tmpfile = qemu_fopen(portable_path, "r"))) {
         fclose(tmpfile);

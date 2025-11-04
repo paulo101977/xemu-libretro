@@ -2,13 +2,6 @@
 #include "xemu-wrapper.h"
 #include <GL/glew.h>
 
-#ifdef _WIN32
-    #include <windows.h>
-    #define GL_GET_PROC_ADDRESS wglGetProcAddress
-#else
-    #include <GL/glx.h>
-    #define GL_GET_PROC_ADDRESS glXGetProcAddress
-#endif
 
 static SDL_Window* gl_window = NULL;
 static SDL_GLContext gl_context = NULL;
@@ -64,8 +57,9 @@ static bool load_gl_functions(void) {
     return true;
 }
 
-bool xemu_init(void) {
-    extern int start_xemu(int argc, char **argv);
+bool xemu_init(const char* config_path) {
+    extern void start_xemu(int argc, char* argv[]);
+    printf("Xemu config path: >>>>>>>>>>>>>>>> %s\n", config_path);
 
     char *argv[] = {
       "xemu",
@@ -76,15 +70,40 @@ bool xemu_init(void) {
       "-display", "xemu",
       "-audio", "none",
       "-audiodev", "none,id=audio0",
+      "-config_path", config_path,
       NULL
     };
-    int argc = 15;
+    int argc = 17;
 
     start_xemu(argc, argv);
     if(load_gl_functions()) {
         initialized = true;
     }
     return true;
+}
+
+uint8_t* c_xemu_get_system_memory(void) {
+    extern uint8_t* xemu_get_system_memory(void);
+
+    return xemu_get_system_memory();
+}
+
+int c_xemu_get_system_memory_size(void) {
+    extern int xemu_get_system_memory_size(void);
+
+    return xemu_get_system_memory_size();
+}
+
+void xemu_pause_unpause() {
+    extern void toogle_pause_vm(void);
+    toogle_pause_vm();
+}
+
+void load_xemu_ext_snapshots() {
+    extern void xemu_load_snapshot();
+
+    // TODO load specific state
+    xemu_load_snapshot();
 }
 
 void run_one_step(void) {
@@ -137,6 +156,11 @@ uint8_t* xemu_get_frame_data(int width, int height) {
     glBindTexture(GL_TEXTURE_2D, 0);
 
     return pixels;
+}
+
+void xemu_input_controller(const uint8_t *buttons) {
+    extern void xemu_input_update_controller_one(const uint8_t *buttons);
+    xemu_input_update_controller_one(buttons);
 }
 
 void xemu_free_frame_data(uint8_t* data) {

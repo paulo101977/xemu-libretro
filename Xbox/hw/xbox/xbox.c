@@ -60,6 +60,11 @@
 
 #define MAX_IDE_BUS 2
 
+#ifdef XEMU_MODULE
+static MemoryRegion *g_ram;
+static MachineState *g_machine;
+#endif
+
 /* FIXME: Clean this up and propagate errors to UI */
 static void xbox_flash_init(MachineState *ms, MemoryRegion *rom_memory)
 {
@@ -173,6 +178,22 @@ static void xbox_flash_init(MachineState *ms, MemoryRegion *rom_memory)
     g_free(bios_data); /* duplicated by `rom_add_blob_fixed` */
 }
 
+#ifdef XEMU_MODULE
+uint8_t* xemu_get_system_memory(void) {
+    if (!g_ram) return NULL;
+
+    uint8_t* ram = memory_region_get_ram_ptr(g_ram);
+
+    printf("xemu_get_system_memory: ram=%p\n", ram);
+    
+    return ram;
+}
+
+int xemu_get_system_memory_size(void) {
+    return g_machine ? g_machine->ram_size: 0;
+}
+#endif
+
 static void xbox_memory_init(PCMachineState *pcms,
                              MemoryRegion *system_memory,
                              MemoryRegion *rom_memory,
@@ -199,6 +220,11 @@ static void xbox_memory_init(PCMachineState *pcms,
 
     xbox_flash_init(machine, rom_memory);
     pc_system_flash_cleanup_unused(pcms);
+
+#ifdef XEMU_MODULE
+    g_ram = ram;
+    g_machine = machine;
+#endif
 }
 
 /* PC hardware initialisation */

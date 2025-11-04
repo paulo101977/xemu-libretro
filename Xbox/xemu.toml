@@ -1,0 +1,7 @@
+[general]
+show_welcome = false
+last_viewed_menu_index = 6
+
+[sys.files]
+eeprom_path = 'C:\Users\paulo\AppData\Roaming\xemu\xemu\eeprom.bin'
+

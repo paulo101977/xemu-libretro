@@ -563,6 +563,7 @@ void sdl2_poll_events(struct sdl2_console *scon)
 
     while (SDL_PollEvent(ev)) {
         xemu_input_process_sdl_events(ev);
+#ifndef XEMU_MODULE
         xemu_hud_process_sdl_events(ev);
 
         switch (ev->type) {
@@ -606,9 +607,11 @@ void sdl2_poll_events(struct sdl2_console *scon)
         default:
             break;
         }
+#endif
     }
 
     xemu_input_update_controllers();
+// #endif
 
     scon->idle_counter = 0;
     scon->dcl.update_interval = 16; // Ignored
@@ -764,7 +767,8 @@ static void sdl2_display_very_early_init(DisplayOptions *o)
     }
 
 #ifdef XEMU_MODULE
-    SDL_WindowFlags window_flags = (SDL_WindowFlags)(SDL_WINDOW_OPENGL | SDL_WINDOW_HIDDEN);
+    SDL_WindowFlags window_flags = (SDL_WindowFlags)(SDL_WINDOW_OPENGL | SDL_WINDOW_HIDDEN | SDL_WINDOW_ALLOW_HIGHDPI);
+    // SDL_WindowFlags window_flags = (SDL_WindowFlags)(SDL_WINDOW_OPENGL);
 #else
     SDL_WindowFlags window_flags = (SDL_WindowFlags)(SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
 #endif
@@ -1027,6 +1031,28 @@ static void update_fps(void)
     fps = 1000.0/avg;
 }
 
+#ifdef XEMU_MODULE
+void toogle_pause_vm(void) {
+    qemu_mutex_lock_main_loop();
+    bql_lock();
+
+    toogle_pause();
+
+    bql_unlock();
+    qemu_mutex_unlock_main_loop();
+}
+
+void xemu_load_snapshot(void) {
+    qemu_mutex_lock_main_loop();
+    bql_lock();
+
+    xemu_load_snapshot_request();
+
+    bql_unlock();
+    qemu_mutex_unlock_main_loop();
+}
+#endif
+
 void sdl2_gl_refresh(DisplayChangeListener *dcl)
 {
     struct sdl2_console *scon = container_of(dcl, struct sdl2_console, dcl);
@@ -1069,9 +1095,9 @@ void sdl2_gl_refresh(DisplayChangeListener *dcl)
     qemu_mutex_lock_main_loop();
     bql_lock();
 
-#ifndef XEMU_MODULE
+// #ifndef XEMU_MODULE
     sdl2_poll_events(scon);
-#endif
+// #endif
 
     glClearColor(0, 0, 0, 0);
     glClear(GL_COLOR_BUFFER_BIT);
@@ -1484,6 +1510,7 @@ void run_step() {
     // g_config.audio.volume_limit = 0;
 
     // run one step
+    // xemu_input_update_controllers();
     sdl2_gl_refresh(&sdl2_console[0].dcl);
     assert(glGetError() == GL_NO_ERROR);
 }

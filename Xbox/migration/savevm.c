@@ -3320,10 +3320,12 @@ bool load_snapshot(const char *name, const char *vmstate,
 
     bdrv_drain_all_end();
 
+#ifndef XEMU_MODULE
     if (ret < 0) {
         error_setg(errp, "Error %d while loading VM state", ret);
         return false;
     }
+#endif
 
     return true;
 

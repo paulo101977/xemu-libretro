@@ -44,6 +44,11 @@ void xemu_hud_process_sdl_events(SDL_Event *event);
 void xemu_hud_should_capture_kbd_mouse(int *kbd, int *mouse);
 void xemu_hud_set_framebuffer_texture(GLuint tex, bool flip);
 
+#ifdef XEMU_MODULE
+void xemu_load_snapshot_request(void);
+void toogle_pause(void);
+#endif
+
 #ifdef __cplusplus
 }
 #endif

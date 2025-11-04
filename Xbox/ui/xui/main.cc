@@ -186,6 +186,17 @@ void xemu_hud_set_framebuffer_texture(GLuint tex, bool flip)
     g_flip_req = flip;
 }
 
+#ifdef XEMU_MODULE
+void toogle_pause(void) {
+    ActionTogglePause();
+}
+
+void xemu_load_snapshot_request(void)
+{
+    ActionActivateBoundSnapshot(0, false);
+}
+#endif
+
 void xemu_hud_render(void)
 {
     ImGuiIO& io = ImGui::GetIO();
@@ -305,10 +316,7 @@ void xemu_hud_render(void)
 
     first_boot_window.Draw();
     monitor_window.Draw();
-    // Audio?
-#ifndef XEMU_MODULE
     apu_window.Draw();
-#endif
     video_window.Draw();
     compatibility_reporter_window.Draw();
 #if defined(_WIN32)
