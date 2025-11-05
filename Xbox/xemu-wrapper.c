@@ -27,8 +27,8 @@ static bool load_gl_functions(void) {
 
     gl_window = SDL_CreateWindow(
         "Xemu GL Context",
-        SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-        100, 100,
+        SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+        1, 1,
         SDL_WINDOW_OPENGL | SDL_WINDOW_HIDDEN
     );
     
@@ -53,13 +53,15 @@ static bool load_gl_functions(void) {
     printf("OpenGL version: %s\n", glGetString(GL_VERSION));
     printf("GLEW version: %s\n", glewGetString(GLEW_VERSION));
     printf("glActiveTexture: %p\n", glActiveTexture);
+
+    SDL_GL_DeleteContext(gl_context);
+    SDL_DestroyWindow(gl_window);
     
     return true;
 }
 
-bool xemu_init(const char* config_path) {
-    extern void start_xemu(int argc, char* argv[]);
-    printf("Xemu config path: >>>>>>>>>>>>>>>> %s\n", config_path);
+bool xemu_init(const char* config_path, char* game_path) {
+    extern void start_xemu(int argc, char* argv[], char* game_path);
 
     char *argv[] = {
       "xemu",
@@ -75,11 +77,33 @@ bool xemu_init(const char* config_path) {
     };
     int argc = 17;
 
-    start_xemu(argc, argv);
+    start_xemu(argc, argv, game_path);
     if(load_gl_functions()) {
         initialized = true;
     }
+
     return true;
+}
+
+void xemu_save_state(const char *vm_name) {
+    extern void xemu_snapshots_save(const char *vm_name, Error **err);
+    extern void qemu_mutex_lock_main_loop(void);
+    extern void bql_unlock();
+    extern void qemu_mutex_unlock_main_loop(void);
+
+    qemu_mutex_lock_main_loop();
+    bql_lock();
+
+    Error *err = NULL;
+    xemu_snapshots_save(vm_name, &err);
+
+    if (err) {
+        printf("Error: %s\n", error_get_pretty(err));
+        error_free(err);
+    }
+
+    bql_unlock();
+    qemu_mutex_unlock_main_loop();
 }
 
 uint8_t* c_xemu_get_system_memory(void) {
@@ -99,11 +123,11 @@ void xemu_pause_unpause() {
     toogle_pause_vm();
 }
 
-void load_xemu_ext_snapshots() {
+void load_xemu_ext_snapshots(char *name) {
     extern void xemu_load_snapshot();
 
     // TODO load specific state
-    xemu_load_snapshot();
+    xemu_load_snapshot(name);
 }
 
 void run_one_step(void) {
@@ -122,12 +146,9 @@ uint8_t* xemu_get_frame_data(int width, int height) {
     extern GLuint get_texture();
     uint8_t* pixels = (uint8_t*)malloc(width * height * 3);
 
+    // Initialize with black
+    memset(pixels, 0, width * height * 3);
 
-    for (int i = 0; i < width * height * 3; i++) {
-        pixels[i] = 0;
-    }
-
-    // return black pixels if not initialized
     if (!initialized) {
         return pixels;
     }
@@ -137,22 +158,45 @@ uint8_t* xemu_get_frame_data(int width, int height) {
         return pixels;
     }
 
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, tex);
-    
-    GLuint fbo;
-    glGenFramebuffers(1, &fbo);
-    glBindFramebuffer(GL_READ_FRAMEBUFFER, fbo);
-    glFramebufferTexture2D(GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, tex, 0);
+    GLint texW, texH;
+    glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &texW);
+    glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &texH);
 
-    GLenum status = glCheckFramebufferStatus(GL_READ_FRAMEBUFFER);
+    GLuint fbo_src, fbo_dest;
+    GLuint render_tex;
     
-    if (status == GL_FRAMEBUFFER_COMPLETE) {
-        glReadPixels(0, 0, width, height, GL_RGB, GL_UNSIGNED_BYTE, pixels);
+    glGenFramebuffers(1, &fbo_src);
+    glBindFramebuffer(GL_READ_FRAMEBUFFER, fbo_src);
+    glFramebufferTexture2D(GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, tex, 0);
+    
+    glGenTextures(1, &render_tex);
+    glBindTexture(GL_TEXTURE_2D, render_tex);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    
+    glGenFramebuffers(1, &fbo_dest);
+    glBindFramebuffer(GL_DRAW_FRAMEBUFFER, fbo_dest);
+    glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, render_tex, 0);
+    
+    if (texH > height) {
+        glBlitFramebuffer(0, texH - height, texW, texH,  // src: top portion
+                          0, 0, width, height,           // dst: full
+                          GL_COLOR_BUFFER_BIT, GL_LINEAR);
+    } else {
+        glBlitFramebuffer(0, 0, texW, texH,
+                          0, 0, width, height,
+                          GL_COLOR_BUFFER_BIT, GL_LINEAR);
     }
+    
+    glBindFramebuffer(GL_READ_FRAMEBUFFER, fbo_dest);
+    glReadPixels(0, 0, width, height, GL_RGB, GL_UNSIGNED_BYTE, pixels);
 
     glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
-    glDeleteFramebuffers(1, &fbo);
+    glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+    glDeleteFramebuffers(1, &fbo_src);
+    glDeleteFramebuffers(1, &fbo_dest);
+    glDeleteTextures(1, &render_tex);
     glBindTexture(GL_TEXTURE_2D, 0);
 
     return pixels;

@@ -7,8 +7,8 @@
 namespace py = pybind11;
 
 struct XemuEmulator {
-    bool init(const char* config_path) {
-        return xemu_init(config_path);
+    bool init(const char* config_path, char* game_path) {
+        return xemu_init(config_path, game_path);
     }
 
     void run() {
@@ -19,8 +19,8 @@ struct XemuEmulator {
         deinit_xemu();
     }
 
-    void load_state() {
-        load_xemu_ext_snapshots();
+    void load_state(char* name) {
+        load_xemu_ext_snapshots(name);
     }
 
     py::memoryview get_system_memory_base() {
@@ -47,6 +47,10 @@ struct XemuEmulator {
 
     void pause_unpause() {
         xemu_pause_unpause();
+    }
+
+    void save_state(const char *vm_name) {
+        xemu_save_state(vm_name);
     }
 
     pybind11::bytes get_frame_data(int width, int height) {
@@ -116,5 +120,6 @@ PYBIND11_MODULE(xemu_module, m) {
         .def("update_input_controller", &XemuEmulator::update_input_controller)
         .def("load_state", &XemuEmulator::load_state)
         .def("toggle_pause", &XemuEmulator::pause_unpause)
-        .def("get_system_memory", &XemuEmulator::get_system_memory_base);
+        .def("get_system_memory", &XemuEmulator::get_system_memory_base)
+        .def("save_state", &XemuEmulator::save_state);
 }

@@ -13,10 +13,12 @@ from xemu_module import XemuEmulator
 
 config_path = os.path.dirname(os.path.abspath(__file__))
 config_path = os.path.join(config_path, "build/xemu.toml")
+game_path="D:\\Downloads\\xemu-win-x86_64-release\\cs.iso"
+# game_path=None
 
 xemu = XemuEmulator()
-xemu.init(config_path)
-xemu.load_state()
+xemu.init(config_path, game_path)
+xemu.load_state("default_state")
 xemu.toggle_pause()
 xemu.toggle_pause()
 
@@ -51,25 +53,40 @@ joystick.init()
 running = True
 button_index = 0
 count = 0
+running = True
 try:
     while True:
         for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                keys = pygame.key.get_pressed()
+                if keys[pygame.K_s]:
+                    xemu.save_state("default_state")
+                    running = False
             if event.type == pygame.QUIT:
                 xemu.deinit()
                 running = False
-                wav_file.close()
+                # wav_file.close()
                 pygame.quit()
                 break
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     xemu.deinit()
-                    wav_file.close()
+                    # wav_file.close()
                     pygame.quit()
                     running = False
                     break
 
         buttons = np.zeros(25, dtype=np.uint8)
         xemu.update_input_controller(buttons)
+
+
+        if not running:
+            count+= 1
+
+            if count == 100:
+                running = True
+
+            continue
 
         for i in range(joystick.get_numbuttons()):
             b = joystick.get_button(i)
@@ -136,8 +153,8 @@ try:
         # count+= 1
 
         xemu.run()
-        audio_bytes = xemu.get_audio_bytes()
-        wav_file.writeframes(audio_bytes)
+        # audio_bytes = xemu.get_audio_bytes()
+        # wav_file.writeframes(audio_bytes)
 
         image_bytes = xemu.get_frame_data(width, height)
         frame_data = np.frombuffer(image_bytes, dtype=np.uint8)
@@ -159,10 +176,10 @@ try:
         
         clock.tick(60)
 except KeyboardInterrupt:
-    wav_file.close()
+    # wav_file.close()
     pygame.quit()
-    print(f"Interrompido no frame \n")
+    print(f"stop frame \n")
 finally:
-    wav_file.close()
+    # wav_file.close()
     pygame.quit()
-    print(f"Áudio salvo em 'xemu_audio.wav' frames)")
+    print(f"save audio file in 'xemu_audio.wav')")
