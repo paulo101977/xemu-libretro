@@ -54,8 +54,13 @@ running = True
 button_index = 0
 count = 0
 running = True
+
+frame_time = 1.0 / 60
+frame_count = 0
+
 try:
     while True:
+        start_time = time.time()
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 keys = pygame.key.get_pressed()
@@ -76,7 +81,8 @@ try:
                     running = False
                     break
 
-        buttons = np.zeros(25, dtype=np.uint8)
+        # buttons = np.zeros(22, dtype=np.uint8)
+        buttons = np.zeros(21, dtype=np.int16)
         xemu.update_input_controller(buttons)
 
 
@@ -115,32 +121,12 @@ try:
         lt      = joystick.get_axis(4)
         rt      = joystick.get_axis(5)
 
-    
-        if left_y < -0.1:
-            buttons[15] = 1
-        if left_y > 0.1:
-            buttons[16] = 1
-        if left_x < -0.1:
-            buttons[17] = 1
-        if left_x > 0.1:
-            buttons[18] = 1
-
-        right_sensitivity = 0.5
-
-        if right_y < -right_sensitivity:
-            buttons[20] = 1
-        if right_y > right_sensitivity:
-            buttons[21] = 1
-        if right_x < -right_sensitivity:
-            buttons[22] = 1
-        if right_x > right_sensitivity:
-            buttons[23] = 1
-
-        if lt > 0.1:
-            buttons[19] = 1
-
-        if rt > 0.1:
-            buttons[24] = 1
+        buttons[15] = left_y * 32768
+        buttons[16] = left_x * 32768
+        buttons[17] = lt * 32768
+        buttons[18] = right_y * 32768
+        buttons[19] = right_x * 32768
+        buttons[20] = rt * 32768
 
         # buttons[button_index] = 1
         # xemu.update_input_controller(buttons)
@@ -155,6 +141,9 @@ try:
         xemu.run()
         # audio_bytes = xemu.get_audio_bytes()
         # wav_file.writeframes(audio_bytes)
+        audio = xemu.get_audio()
+        # wav_file.writeframes(audio.tobytes())
+        wav_file.writeframes(audio)
 
         image_bytes = xemu.get_frame_data(width, height)
         frame_data = np.frombuffer(image_bytes, dtype=np.uint8)
@@ -167,14 +156,18 @@ try:
 
         # print(len(xemu.get_system_memory()))
         # print(frame_reshaped)
+        frame_count += 1
 
+        # elapsed = time.time() - start_time
+        # if elapsed < frame_time:
+        #     time.sleep(frame_time - elapsed)
 
         frame_surface = pygame.surfarray.make_surface(frame_reshaped)
         
         screen.blit(frame_surface, (0, 0))
         pygame.display.update(0, 0, width, height)
         
-        clock.tick(60)
+        # clock.tick(60)
 except KeyboardInterrupt:
     # wav_file.close()
     pygame.quit()

@@ -1,4 +1,5 @@
 #include "xemu-wrapper.h"
+#include "xemu_audio.h"
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 #include <cstdint>
@@ -53,9 +54,9 @@ struct XemuEmulator {
         xemu_save_state(vm_name);
     }
 
-    pybind11::bytes get_frame_data(int width, int height) {
+    py::bytes get_frame_data(int width, int height) {
         uint8_t* frame_data = xemu_get_frame_data(width, height);
-        pybind11::bytes result(
+        py::bytes result(
             reinterpret_cast<const char*>(frame_data), 
             width * height * 3
         );
@@ -65,14 +66,24 @@ struct XemuEmulator {
     }
     
     
-    pybind11::bytes get_audio_bytes() {
-        int16_t* buffer = xemu_get_audio_buffer_direct();
-        int size_bytes = 256 * 2 * sizeof(int16_t);
+    py::bytes get_audio() {
+        int samples = xemu_audio_samples();
+    
+        if(samples <= 0 || xemu_audio_data() == nullptr) {
+            return py::bytes();
+        }
         
-        return pybind11::bytes(
-            reinterpret_cast<const char*>(buffer),
-            size_bytes
-        );
+        const int16_t* audio_data = xemu_audio_data();
+        if(audio_data == nullptr) {
+            return py::bytes();
+        }
+        
+        size_t data_size = samples * 2 * sizeof(int16_t);
+        
+        py::bytes audio_bytes(reinterpret_cast<const char*>(audio_data), data_size);
+        
+        xemu_audio_clear();
+        return audio_bytes;
     }
     
     int get_audio_buffer_size() {
@@ -88,15 +99,15 @@ struct XemuEmulator {
         py::buffer_info info = buf.request();
         
 
-        if (info.format != "B" && info.format != "b") {
-            throw std::runtime_error("Expected uint8 array");
+        // if (info.format != "B" && info.format != "b") {
+        //     throw std::runtime_error("Expected uint8 array");
+        // }
+        
+        if (info.itemsize != sizeof(signed short int)) {
+            throw std::runtime_error("Expected signed short int itemsize");
         }
         
-        if (info.itemsize != sizeof(uint8_t)) {
-            throw std::runtime_error("Expected uint8 itemsize");
-        }
-        
-        const uint8_t *buttons = static_cast<const uint8_t *>(info.ptr);
+        const signed short int *buttons = static_cast<const signed short int *>(info.ptr);
         
 
         if (info.size == 0) return;
@@ -114,7 +125,7 @@ PYBIND11_MODULE(xemu_module, m) {
         .def("run", &XemuEmulator::run)
         .def("get_frame_data", &XemuEmulator::get_frame_data)
         .def("deinit", &XemuEmulator::deinit)
-        .def("get_audio_bytes", &XemuEmulator::get_audio_bytes)
+        .def("get_audio", &XemuEmulator::get_audio)
         .def("get_audio_buffer_size", &XemuEmulator::get_audio_buffer_size)
         .def("get_audio_samples_per_frame", &XemuEmulator::get_audio_samples_per_frame)
         .def("update_input_controller", &XemuEmulator::update_input_controller)

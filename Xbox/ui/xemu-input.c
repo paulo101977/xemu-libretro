@@ -83,7 +83,7 @@ static void xemu_input_print_controller_state(ControllerState *state)
 }
 #endif
 
-static const uint8_t *g_buttons; 
+static const signed short int *g_buttons;
 
 ControllerStateList available_controllers =
     QTAILQ_HEAD_INITIALIZER(available_controllers);
@@ -429,7 +429,7 @@ void xemu_input_update_controllers(void)
 }
 
 #ifdef XEMU_MODULE
-void xemu_input_update_generic_controller_state(ControllerState *state, const uint8_t *buttons)
+void xemu_input_update_generic_controller_state(ControllerState *state, const signed short int *buttons)
 {
     int64_t now = qemu_clock_get_us(QEMU_CLOCK_REALTIME);
     if (ABS(now - state->last_input_updated_ts) <
@@ -448,21 +448,29 @@ void xemu_input_update_generic_controller_state(ControllerState *state, const ui
         state->buttons |= (buttons[i] ? 1 : 0) << i;
     }
 
+    state->axis[CONTROLLER_AXIS_LSTICK_Y] = buttons[15];
+    state->axis[CONTROLLER_AXIS_LSTICK_X] = buttons[16];
 
-    if (buttons[15]) state->axis[CONTROLLER_AXIS_LSTICK_Y] = -32768;
-    if (buttons[16]) state->axis[CONTROLLER_AXIS_LSTICK_Y] = 32767;
-    if (buttons[17]) state->axis[CONTROLLER_AXIS_LSTICK_X] = -32768; 
-    if (buttons[18]) state->axis[CONTROLLER_AXIS_LSTICK_X] = 32767;
+    state->axis[CONTROLLER_AXIS_LTRIG] = buttons[17];
+
+    state->axis[CONTROLLER_AXIS_RSTICK_Y] = buttons[18];
+    state->axis[CONTROLLER_AXIS_RSTICK_X] = buttons[19];
+
+    state->axis[CONTROLLER_AXIS_RTRIG] = buttons[20];
+    // if (buttons[15]) state->axis[CONTROLLER_AXIS_LSTICK_Y] = -32768;
+    // if (buttons[16]) state->axis[CONTROLLER_AXIS_LSTICK_Y] = 32767;
+    // if (buttons[17]) state->axis[CONTROLLER_AXIS_LSTICK_X] = -32768; 
+    // if (buttons[18]) state->axis[CONTROLLER_AXIS_LSTICK_X] = 32767;
     
-    if (buttons[19]) state->axis[CONTROLLER_AXIS_LTRIG] = 32767; 
+    // if (buttons[19]) state->axis[CONTROLLER_AXIS_LTRIG] = 32767; 
 
 
-    if (buttons[20]) state->axis[CONTROLLER_AXIS_RSTICK_Y] = -32768;
-    if (buttons[21]) state->axis[CONTROLLER_AXIS_RSTICK_Y] = 32767; 
-    if (buttons[22]) state->axis[CONTROLLER_AXIS_RSTICK_X] = -32768;
-    if (buttons[23]) state->axis[CONTROLLER_AXIS_RSTICK_X] = 32767;
+    // if (buttons[20]) state->axis[CONTROLLER_AXIS_RSTICK_Y] = -32768;
+    // if (buttons[21]) state->axis[CONTROLLER_AXIS_RSTICK_Y] = 32767; 
+    // if (buttons[22]) state->axis[CONTROLLER_AXIS_RSTICK_X] = -32768;
+    // if (buttons[23]) state->axis[CONTROLLER_AXIS_RSTICK_X] = 32767;
     
-    if (buttons[24]) state->axis[CONTROLLER_AXIS_RTRIG] = 32767;
+    // if (buttons[24]) state->axis[CONTROLLER_AXIS_RTRIG] = 32767;
 
     state->axis[CONTROLLER_AXIS_LSTICK_Y] = -1 - state->axis[CONTROLLER_AXIS_LSTICK_Y];
     state->axis[CONTROLLER_AXIS_RSTICK_Y] = -1 - state->axis[CONTROLLER_AXIS_RSTICK_Y];
@@ -470,7 +478,7 @@ void xemu_input_update_generic_controller_state(ControllerState *state, const ui
     state->last_input_updated_ts = qemu_clock_get_us(QEMU_CLOCK_REALTIME);
 }
 
-void xemu_input_update_controller_one(const uint8_t *buttons) {
+void xemu_input_update_controller_one(const signed short int *buttons) {
     g_buttons = buttons;
 }
 #endif
@@ -483,7 +491,7 @@ void xemu_input_update_sdl_kbd_controller_state(ControllerState *state)
 #ifndef XEMU_MODULE
     const uint8_t *kbd = SDL_GetKeyboardState(NULL);
 #else
-    const uint8_t *kbd = g_buttons;
+    const signed short int *kbd = g_buttons;
 
     xemu_input_update_generic_controller_state(state, g_buttons);
 

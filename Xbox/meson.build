@@ -4534,6 +4534,7 @@ foreach target : target_dirs
       xemu_sources = [ 
         'main.cpp',
         'xemu-wrapper.c',
+        'xemu_audio.cpp',
       ]
       xemu_lib = shared_module('xemu_module' + lib_suffix,
               sources: xemu_sources + exe['sources'],

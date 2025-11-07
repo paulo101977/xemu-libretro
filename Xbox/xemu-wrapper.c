@@ -7,11 +7,6 @@ static SDL_Window* gl_window = NULL;
 static SDL_GLContext gl_context = NULL;
 static bool initialized = false;
 
-int16_t* xemu_get_audio_buffer_direct(void) {
-    extern int16_t (*capture_audio_buffer(void))[2];
-    return (int16_t*)capture_audio_buffer();
-}
-
 static bool load_gl_functions(void) {
     printf("Start OpenGL Context...\n");
     
@@ -52,7 +47,6 @@ static bool load_gl_functions(void) {
     printf("Context created...\n");
     printf("OpenGL version: %s\n", glGetString(GL_VERSION));
     printf("GLEW version: %s\n", glewGetString(GLEW_VERSION));
-    printf("glActiveTexture: %p\n", glActiveTexture);
 
     SDL_GL_DeleteContext(gl_context);
     SDL_DestroyWindow(gl_window);
@@ -124,7 +118,7 @@ void xemu_pause_unpause() {
 }
 
 void load_xemu_ext_snapshots(char *name) {
-    extern void xemu_load_snapshot();
+    extern void xemu_load_snapshot(char *name);
 
     // TODO load specific state
     xemu_load_snapshot(name);
@@ -202,8 +196,8 @@ uint8_t* xemu_get_frame_data(int width, int height) {
     return pixels;
 }
 
-void xemu_input_controller(const uint8_t *buttons) {
-    extern void xemu_input_update_controller_one(const uint8_t *buttons);
+void xemu_input_controller(const signed short int *buttons) {
+    extern void xemu_input_update_controller_one(const signed short int *buttons);
     xemu_input_update_controller_one(buttons);
 }
 

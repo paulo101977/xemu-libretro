@@ -846,7 +846,11 @@ static void sdl2_display_early_init(DisplayOptions *o)
     display_opengl = 1;
 
     SDL_GL_MakeCurrent(m_window, m_context);
+#ifdef XEMU_MODULE
+    SDL_GL_SetSwapInterval(0);
+#else
     SDL_GL_SetSwapInterval(g_config.display.window.vsync ? 1 : 0);
+#endif
     xemu_hud_init(m_window, m_context);
     // blit = create_decal_shader(SHADER_TYPE_BLIT_GAMMA);
 }
