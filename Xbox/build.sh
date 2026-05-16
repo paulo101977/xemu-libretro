@@ -270,6 +270,6 @@ set -x # Print commands from now on
     "$@"
 
 # time make -j"${job_count}" ${target} 2>&1 | tee build.log
-ninja xemu_module.pyd
+#ninja xemu_module.pyd
 
 "${postbuild}" # call post build functions
