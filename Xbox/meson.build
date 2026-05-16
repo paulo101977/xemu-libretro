@@ -4478,6 +4478,8 @@ foreach target : target_dirs
     message('Executable name:', exe['name'])
   endforeach
 
+  xemu_module_created = false
+
   foreach exe: execs
     exe_name = exe['name']
     if host_os == 'darwin'
@@ -4493,7 +4495,9 @@ foreach target : target_dirs
                link_args: link_args,
                win_subsystem: exe['win_subsystem'])
 
-    if exe_name.contains('i386')
+    if exe_name.contains('i386') and not xemu_module_created
+      xemu_module_created = true
+
       lib_suffix = ''
       if exe_name == 'qemu-system-i386w'
           lib_suffix = '_win'
@@ -4519,6 +4523,7 @@ foreach target : target_dirs
           ]
       )
 
+      # glew_dep = dependency('glew', required: true)
       glew_dep = dependency('glew', required: true)
 
       xemu_python_deps = [
@@ -4536,22 +4541,37 @@ foreach target : target_dirs
         'xemu-wrapper.c',
         'xemu_audio.cpp',
       ]
-      xemu_lib = shared_module('xemu_module' + lib_suffix,
+
+      host_system = host_machine.system()
+
+      if host_system == 'windows'
+          module_sufix = 'pyd'
+      elif host_system == 'linux'
+          module_sufix = 'so'
+      elif host_system == 'darwin'
+          module_sufix = 'dylib'
+      else
+          module_sufix = 'so'  # fallback
+      endif
+
+      xemu_lib = shared_module('xemu_module',
               sources: xemu_sources + exe['sources'],
               dependencies: xemu_python_deps,
               objects: lib.extract_all_objects(recursive: true),
               name_prefix: '',
-              name_suffix: 'pyd',
+              name_suffix: module_sufix,
               link_depends: [block_syms, qemu_syms],
               include_directories: xemu_includes,
               cpp_args: [
                 '-fvisibility=hidden',
                 '-Wno-deprecated-declarations',
                 '-DXEMU_MODULE=1',
+                '-DGLEW_STATIC',
                 '-I.', '-Iinclude', '-Ihw'
               ],
               c_args: c_args + [
                 '-DXEMU_MODULE=1',
+                '-DGLEW_STATIC',
                 '-I.', '-Iinclude', '-Ihw'
               ],
               link_args: link_args + [

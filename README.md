@@ -18,16 +18,8 @@ make -j$(getconf _NPROCESSORS_ONLN)
 # sudo apt install mingw-w64 mingw-w64-tools pkg-config-mingw-w64-x86-64
 # sudo apt install -y  pkg-config libpcap-dev
 
-
-#TODO add complete command for windows here
+export CMAKE_SOURCE_DIR={path_to_your_xemu_git}
 
 chmod +x ./config.sh
 ./config.sh
-
-
-
-cmake -B build -S . -DCMAKE_BUILD_TYPE=Release
-cmake --build build --config Release
-
-
 ```
