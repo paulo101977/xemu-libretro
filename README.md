@@ -12,14 +12,25 @@ sudo apt install -y  pkg-config libpcap-dev
 sudo apt install -y libssl-dev
 sudo apt install -y pybind11-dev python3-pybind11
 
-# on windows
-chmod +x ./config.sh
-chmod +x ./Xbox/scripts/xemu-version.sh
-./config.sh
 
-# on linux
 chmod +x ./config.sh
-chmod +x ./Xbox/scripts/xemu-version.sh
-chmod +x ./Xbox/scripts/configure.linux
 ./config.sh
 ```
+
+## Note
+
+The command `./config.sh` configure run the build process once
+
+## Rebuild on windows with MinGW64 or on Linux
+
+```shell
+# on Linux:
+ninja -C Xbox/build xemu_module.so
+
+# on Windows:
+ninja -C Xbox/build xemu_module.pyd
+```
+
+## Where is my lib?
+
+Typically located in the Xbox/build folder with the name xemu_module.pyd or xemu_module.so on Linux. The process finishes by copying the file to the project root, but if this process fails, you will find it in the locations mentioned earlier.
