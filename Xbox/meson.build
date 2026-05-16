@@ -1,6 +1,6 @@
 project('qemu', ['c', 'cpp'], meson_version: '>=1.5.0',
         default_options: ['warning_level=1', 'c_std=gnu11', 'cpp_std=c++17', 'b_colorout=auto',
-                          'b_staticpic=false', 'stdsplit=false', 'optimization=2', 'b_pie=true'],
+                          'b_staticpic=true', 'stdsplit=false', 'optimization=2', 'b_pie=true'],
         version: files('QEMU_VERSION'))
 
 add_test_setup('quick', exclude_suites: ['slow', 'thorough'], is_default: true)
@@ -2354,7 +2354,7 @@ if vulkan.found()
   endif
 
   volk_opts = cmake.subproject_options()
-  volk_opts.add_cmake_defines({'VOLK_STATIC_DEFINES': 'VK_NO_PROTOTYPES'})
+  volk_opts.add_cmake_defines({'VOLK_STATIC_DEFINES': 'VK_NO_PROTOTYPES', 'CMAKE_POSITION_INDEPENDENT_CODE': 'ON'})
   if host_os == 'windows'
     volk_opts.append_compile_args('c', '-DVK_USE_PLATFORM_WIN32_KHR=1')
   endif
@@ -2365,7 +2365,7 @@ if vulkan.found()
                             dependencies: vulkan)
 
   spirv_reflect_opts = cmake.subproject_options()
-  spirv_reflect_opts.add_cmake_defines({'SPIRV_REFLECT_STATIC_LIB': 'ON'})
+  spirv_reflect_opts.add_cmake_defines({'SPIRV_REFLECT_STATIC_LIB': 'ON', 'CMAKE_POSITION_INDEPENDENT_CODE': 'ON'})
   spirv_reflect_subproj = cmake.subproject('SPIRV-Reflect', options: spirv_reflect_opts)
   spirv_reflect = declare_dependency(include_directories: spirv_reflect_subproj.include_directories('spirv-reflect-static'),
                                      link_with: spirv_reflect_subproj.target('spirv-reflect-static'),
@@ -3572,7 +3572,6 @@ if have_libvduse
 endif
 
 tomlplusplus = dependency('tomlplusplus', fallback: ['tomlplusplus', 'tomlplusplus_dep'], default_options: ['default_library=static'])
-
 xxhash = dependency('libxxhash', fallback: ['xxhash', 'xxhash_dep'], default_options: ['default_library=static'])
 
 #####################
@@ -4509,21 +4508,27 @@ foreach target : target_dirs
         # include_directories('python'),
       ]
 
+      python_lib_list = [
+	    '-l' + python_version,
+      ]      
+
+      if host_machine.system() == 'windows'
+		python_lib_list = python_lib_list + [
+			'-lwinpthread',
+			'-static',
+			'-static-libgcc',
+			'-static-libstdc++',
+			'-Wl,-Bstatic',
+			'-Wl,-Bdynamic',
+		]
+      endif
 
       python_dep = declare_dependency(
           compile_args: ['-I' + python_include],
-          link_args: [
-            '-l' + python_version,
-            '-static',
-            '-static-libgcc',
-            '-static-libstdc++',
-            '-Wl,-Bstatic',
-            '-lwinpthread',
-            '-Wl,-Bdynamic',
-          ]
+          link_args: python_lib_list,
       )
 
-      # glew_dep = dependency('glew', required: true)
+      #glew_dep = dependency('glew', required: true)
       glew_dep = dependency('glew', required: true)
 
       xemu_python_deps = [
@@ -4554,6 +4559,27 @@ foreach target : target_dirs
           module_sufix = 'so'  # fallback
       endif
 
+      if host_machine.system() == 'windows'
+	extra_link_args = [
+        '-Wl,--export-all-symbols',
+        '-Wl,--enable-auto-import',
+        '-Wl,--add-stdcall-alias',
+        '-shared',
+        '-static',
+        '-static-libgcc',
+        '-static-libstdc++',
+        '-Wl,--whole-archive',
+        '-Wl,--no-whole-archive',
+	]
+     else
+       extra_link_args = [
+        '-shared',
+        '-fPIC',
+        '-Wl,--whole-archive',
+        '-Wl,--no-whole-archive',
+        ]
+     endif
+
       xemu_lib = shared_module('xemu_module',
               sources: xemu_sources + exe['sources'],
               dependencies: xemu_python_deps,
@@ -4567,30 +4593,16 @@ foreach target : target_dirs
                 '-Wno-deprecated-declarations',
                 '-DXEMU_MODULE=1',
                 '-DGLEW_STATIC',
+		'-fPIC',
                 '-I.', '-Iinclude', '-Ihw'
               ],
               c_args: c_args + [
                 '-DXEMU_MODULE=1',
                 '-DGLEW_STATIC',
+		'-fPIC',
                 '-I.', '-Iinclude', '-Ihw'
               ],
-              link_args: link_args + [
-                  # '-Wl,--export-all-symbols',
-                  # '-Wl,--enable-auto-import',
-                  # '-Wl,--add-stdcall-alias',
-                  # '-shared',
-                  # '-static-libgcc',
-                  # '-static-libstdc++'
-                  '-Wl,--export-all-symbols',
-                  '-Wl,--enable-auto-import',
-                  '-Wl,--add-stdcall-alias',
-                  '-shared',
-                  '-static',
-                  '-static-libgcc',
-                  '-static-libstdc++',
-                  '-Wl,--whole-archive',
-                  '-Wl,--no-whole-archive',
-              ],
+              link_args: extra_link_args,
               install: false,
               # install: true,
               # install_dir: '../../build',
