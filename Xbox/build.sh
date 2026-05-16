@@ -262,12 +262,39 @@ configure="${project_source_dir}/configure"
 
 set -x # Print commands from now on
 
-"${configure}" \
-    --extra-cflags="-DXBOX=1 ${build_cflags} ${sys_cflags} ${CFLAGS}" \
-    --extra-ldflags="${sys_ldflags} -liconv" \
-    --target-list=i386-softmmu \
-    ${opts} \
-    "$@"
+if [[ "$platform" == "Linux" ]]; then
+    echo "Setting configure for Linux..."
+    configure="${project_source_dir}/configure.linux"
+fi
+
+if [[ "$platform" == "Linux" ]]; then
+    export CFLAGS="-fPIC -DXBOX=1 ${build_cflags} ${sys_cflags}"
+    export CXXFLAGS="-fPIC -DXBOX=1 ${build_cflags} ${sys_cflags}"
+    export LDFLAGS=""
+    export MESON_OPTIONS="-Db_pic=true"
+    "${configure}" \
+        --extra-cflags="-DXBOX=1 ${build_cflags} ${sys_cflags}" \
+        --extra-ldflags="" \
+        --target-list=i386-softmmu \
+	--disable-werror \
+        ${opts} \
+        "$@"
+else
+    "${configure}" \
+        --extra-cflags="-DXBOX=1 ${build_cflags} ${sys_cflags} ${CFLAGS}" \
+        --extra-ldflags="${sys_ldflags} -liconv" \
+        --target-list=i386-softmmu \
+        ${opts} \
+        "$@"
+fi
+
+#"${configure}" \
+#    --extra-cflags="-DXBOX=1 ${build_cflags} ${sys_cflags} ${CFLAGS}" \
+#    --extra-ldflags="${sys_ldflags} -liconv" \
+#    --target-list=i386-softmmu \
+#    ${opts} \
+#    "$@"
+
 
 # time make -j"${job_count}" ${target} 2>&1 | tee build.log
 #ninja xemu_module.pyd
